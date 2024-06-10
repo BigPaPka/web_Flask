@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Ценовой прогноз на недвижимость</title>
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Моя модель машинного обучения</a>
+            <!-- Другие ссылки или содержимое навигации, если необходимо -->
+        </div>
+    </nav>
+
+    <!-- Форма для ввода данных -->
+    <div class="container mt-5">
+        <h2>Прогнозирование цены на жилье</h2>
+        <p>Введите данные для расчета стоимости:</p>
+        <form action="{{url_for('predict')}}" method="post">
+            <!-- Количество комнат -->
+            <div class="mb-3">
+                <label for="rooms" class="form-label">Количество комнат:</label>
+                <input type="number" class="form-control" name="rooms" id="rooms" required>
+            </div>
+
+            <!-- Площадь -->
+            <div class="mb-3">
+                <label for="area" class="form-label">Площадь:</label>
+                <input type="number" class="form-control" name="area" id="area" required>
+            </div>
+
+            <!-- Площадь кухни -->
+            <div class="mb-3">
+                <label for="kitchen_area" class="form-label">Площадь кухни:</label>
+                <input type="number" class="form-control" name="kitchen_area" id="kitchen_area" required>
+            </div>
+
+            <!-- Этаж -->
+            <div class="mb-3">
+                <label for="floor" class="form-label">Этаж:</label>
+                <input type="number" class="form-control" name="floor" id="floor" required>
+            </div>
+
+            <!-- Минут до метро -->
+            <div class="mb-3">
+                <label for="minutes_to_metro" class="form-label">Минут до метро:</label>
+                <input type="number" class="form-control" name="minutes_to_metro" id="minutes_to_metro" required>
+            </div>
+
+            <!-- Тип ремонта -->
+            <div class="mb-3">
+                <label for="renovation_type" class="form-label">Тип ремонта:</label>
+                <input type="text" class="form-control" name="renovation_type" id="renovation_type" required>
+            </div>
+
+            <!-- Тип квартиры -->
+            <div class="mb-3">
+                <label for="apartment_type" class="form-label">Тип квартиры:</label>
+                <input type="text" class="form-control" name="apartment_type" id="apartment_type" required>
+            </div>
+
+            <!-- Кнопка отправки формы -->
+            <button type="submit" class="btn btn-primary">Предсказать стоимость</button>
+        </form>
+        <br>
+        <!-- Вывод предсказанной цены -->
+        {% if prediction_text %}
+            <div class="alert alert-success" role="alert">
+                <b>{{ prediction_text }}</b>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
